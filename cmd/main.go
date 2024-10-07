@@ -5,10 +5,11 @@ import (
 
 	"github.com/LeMinh0706/music-go/cmd/server"
 	"github.com/LeMinh0706/music-go/util"
+	_ "github.com/lib/pq"
 )
 
 func main() {
-	config, err := util.LoadConfig(".")
+	config, err := util.LoadConfig("./")
 	if err != nil {
 		log.Fatal("Cannot load config: ", err)
 	}
