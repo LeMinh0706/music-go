@@ -3,7 +3,6 @@ package service
 import (
 	"context"
 	"database/sql"
-	"errors"
 	"strings"
 
 	"github.com/LeMinh0706/music-go/internal/repo"
@@ -51,13 +50,12 @@ func (us *UserSevice) Register(ctx context.Context, username, password, fullname
 
 func (us *UserSevice) Login(ctx context.Context, username, password string) (response.LoginResponse, error) {
 	var res response.LoginResponse
-	WrongLogin := errors.New("Wrong username or password")
 	user, err := us.userRepo.GetUser(ctx, username)
 	if err == sql.ErrNoRows {
-		return res, WrongLogin
+		return res, err
 	}
 	if err := util.CheckPassword(password, user.Password); err != nil {
-		return res, WrongLogin
+		return res, err
 	}
 	res = response.LoginRes(user)
 	return res, nil

@@ -1,11 +1,17 @@
 package response
 
 const (
-	StatusOk    = 200
-	CodeSuccess = 201
+	StatusOk      = 200
+	CodeSuccess   = 201
+	ErrBadRequest = 40000
+	ErrFailed     = 40001
+	ErrNotFound   = 40004
 )
 
 var msg = map[int]string{
-	StatusOk:    "Ok",
-	CodeSuccess: "Success",
+	StatusOk:      "Ok",
+	CodeSuccess:   "Success",
+	ErrBadRequest: "Bad request",
+	ErrFailed:     "Request Fail",
+	ErrNotFound:   "Not found",
 }
